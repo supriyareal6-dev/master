@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Details • Master</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <a href="./index.html" class="btn" style="padding:8px 10px">⟵ Back</a>
+      <a href="./index.html" class="brand-link" aria-label="Go to Home">
+        <img src="./assets/logo.svg" alt="Logo" class="logo" />
+        <span class="brand">Master</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <a class="btn btn-primary" id="buyTop" href="#" target="_blank" rel="noopener">Buy Now</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="productDetail" class="detail">
+      <div class="detail-grid">
+        <div class="gallery card">
+          <div class="gallery-main">
+            <img id="mainImage" alt="Product image" />
+            <div id="mainEmbed" class="main-embed" style="display:none;"></div>
+          </div>
+          <div id="thumbRow" class="thumb-row"></div>
+          <div id="embedContainer" class="embed-card" style="display:none;"></div>
+        </div>
+        <div class="info card">
+          <div class="info-body">
+            <h1 id="pTitle" class="detail-title"></h1>
+            <div id="pPrice" class="detail-price"></div>
+            <p id="pDesc" class="detail-desc"></p>
+            <div class="detail-actions">
+              <a id="buyButton" class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy Now</a>
+              <a href="./index.html" class="btn">Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- QR Modal for Buy -->
+  <div id="qrModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="qrTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card card" style="padding:16px; text-align:center;">
+      <h3 id="qrTitle">Scan to Pay</h3>
+      <p class="muted" style="margin-top:-6px">Use your payment app to scan the QR code.</p>
+      <div style="margin:12px 0; display:grid; place-items:center;">
+        <img id="qrImageModal" alt="QR code" style="max-width:280px; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.08)" />
+      </div>
+      <div class="form-actions" style="justify-content:center">
+        <button id="qrSubmitBtn" class="btn btn-primary" type="button">Submit</button>
+        <button class="btn" type="button" data-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>&copy; <span id="year"></span> Master. All rights reserved.</p>
+  </footer>
+
+  <script src="./product.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Promotional image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0D10"/>
+      <stop offset="1" stop-color="#0E1217"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F8CFF"/>
+      <stop offset="1" stop-color="#7BC8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g filter="url(#f1)">
+    <circle cx="200" cy="200" r="160" fill="#4F8CFF22"/>
+  </g>
+  <g filter="url(#f2)">
+    <circle cx="1000" cy="520" r="180" fill="#7BC8FF22"/>
+  </g>
+  <rect x="400" y="190" width="400" height="250" rx="24" fill="#11161C" stroke="url(#g)" stroke-width="2"/>
+  <circle cx="510" cy="475" r="10" fill="#E6EBF3"/>
+  <circle cx="690" cy="475" r="10" fill="#E6EBF3"/>
+  <text x="600" y="250" text-anchor="middle" fill="#E6EBF3" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="42">ShopLite</text>
+  <text x="600" y="290" text-anchor="middle" fill="#9AA6B2" font-family="Inter, Arial, sans-serif" font-size="18">Clean, modern product cards</text>
+  <defs>
+    <filter id="f1" x="-40" y="-40" width="480" height="480" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="f2" x="740" y="260" width="520" height="520" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+  </defs>
+</svg>

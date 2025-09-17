@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Master</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <a href="./index.html" class="brand-link" aria-label="Go to Home">
+        <img src="./assets/logo.svg" alt="Logo" class="logo" />
+        <span class="brand">Master</span>
+      </a>
+    </div>
+    <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="header-right" id="headerActions" aria-label="Header actions">
+      <a class="btn btn-outline" href="https://t.me/" target="_blank" rel="noopener noreferrer">Join Telegram Group</a>
+      <a id="btnContact" class="btn" href="https://t.me/jeetgaming75">Contact</a>
+      <button id="btnAdminPanel" class="btn">Premium</button>
+    </div>
+  </header>
+
+  <!-- Main Navigation -->
+  <nav class="tabs">
+    <button class="tab active" data-target="#home">HOME</button>
+    <button class="tab" type="button" data-cat="telegram">TELEGRAM</button>
+    <button class="tab" type="button" data-cat="video">VIDEO</button>
+    <button class="tab" type="button" data-cat="images">IMAGES</button>
+  </nav>
+
+  <main class="container">
+    <!-- Home -->
+    <section id="home" class="panel active">
+      <div class="toolbar">
+        <h2>Products</h2>
+        <div class="search-box">
+          <input id="searchInput" type="search" placeholder="Search products..." />
+        </div>
+      </div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty" hidden>
+        <p>No products found.</p>
+      </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section id="adminPanel" class="panel">
+      <div class="admin-layout">
+        <form id="productForm" class="card form">
+          <h3 id="formTitle">Add Product</h3>
+          <input type="hidden" id="productId" />
+
+          <label class="field">
+            <span>Thumbnail Image URL</span>
+            <input id="thumbUrl" type="url" placeholder="https://.../thumb.jpg" required />
+            <span class="muted" style="font-size:12px">This will be used as the product cover image.</span>
+          </label>
+
+          <label class="field">
+            <span>Image 1 URL (optional)</span>
+            <input id="image1Url" type="url" placeholder="https://.../image1.jpg" />
+          </label>
+
+          <label class="field">
+            <span>Embed code (optional)</span>
+            <textarea id="embedCode" rows="4" placeholder="Paste embed HTML (e.g., iframe)"></textarea>
+          </label>
+
+          <label class="field">
+            <span>Title</span>
+            <input id="title" type="text" placeholder="Product title" required />
+          </label>
+
+          <label class="field">
+            <span>Short Description</span>
+            <textarea id="description" rows="3" placeholder="A short and crisp description" required></textarea>
+          </label>
+
+          <label class="field">
+            <span>Price (INR)</span>
+            <input id="price" type="number" step="0.01" min="0" placeholder="1999.00" required />
+          </label>
+
+          <label class="field">
+            <span>Category</span>
+            <select id="category" required>
+              <option value="telegram">TELEGRAM</option>
+              <option value="video">VIDEO</option>
+              <option value="images">IMAGES</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Redirect Link (optional)</span>
+            <input id="redirectLink" type="url" placeholder="https://your-redirect-link.com" />
+            <span class="muted" style="font-size:12px">After users upload payment proof, they will be redirected here.</span>
+          </label>
+
+          <label class="field">
+            <span>QR Code Image (optional)</span>
+            <input id="qrFile" type="file" accept="image/*" />
+            <span class="muted" style="font-size:12px">Upload a QR image to show when users click Buy.</span>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+            <button type="button" class="btn" id="btnReset">Reset</button>
+          </div>
+        </form>
+
+        <div class="card table-card">
+          <div class="table-toolbar">
+            <h3>Manage Products</h3>
+            <button id="btnSeed" class="btn btn-outline small">Seed Samples</button>
+            <button id="btnClear" class="btn btn-outline danger small">Clear All</button>
+            <button id="btnLogout" class="btn small" title="Sign out of premium">Logout</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Proofs</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-toolbar">
+            <h3>Payment Proofs</h3>
+            <div style="display:flex; gap:8px;">
+              <button id="btnProofsDownloadAll" class="btn btn-outline small" type="button">Download All (ZIP)</button>
+              <button id="btnProofsClearAll" class="btn btn-outline danger small" type="button">Clear All</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Product</th>
+                  <th>Note</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="proofsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- QR Modal for Buy -->
+  <div id="qrModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="qrTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card card" style="padding:16px; text-align:center;">
+      <h3 id="qrTitle">Scan to Pay</h3>
+      <p class="muted" style="margin-top:-6px">Use your payment app to scan the QR code.</p>
+      <div style="margin:12px 0; display:grid; place-items:center;">
+        <img id="qrImageModal" alt="QR code" style="max-width:280px; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.08)" />
+      </div>
+      <div class="form-actions" style="justify-content:center">
+        <button id="qrSubmitBtn" class="btn btn-primary" type="button">Submit</button>
+        <button class="btn" type="button" data-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proofs Modal (Admin) -->
+  <div id="proofsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="proofsTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card card" style="padding:16px; max-width:900px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
+        <h3 id="proofsTitle" style="margin:0;">Payment Proofs</h3>
+        <div style="display:flex; gap:8px;">
+          <button id="btnDownloadProofsZip" class="btn btn-outline small" type="button">Download ZIP</button>
+          <button id="btnDeleteProofs" class="btn btn-outline danger small" type="button">Delete All</button>
+          <button class="btn small" type="button" data-close>Close</button>
+        </div>
+      </div>
+      <div id="proofsInfo" class="muted" style="margin-bottom:10px;"></div>
+      <div id="proofsGrid" class="product-grid"></div>
+    </div>
+  </div>
+
+  <!-- Premium Login Modal -->
+  <div id="adminLoginModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="adminLoginTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card card">
+      <form id="adminLoginForm" class="form">
+        <h3 id="adminLoginTitle">Premium Login</h3>
+        <p class="muted">Enter your Premium Password to continue.</p>
+        <label class="field">
+          <span>Password</span>
+          <input id="adminPasswordInput" type="password" placeholder="••••••••" required />
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="button" class="btn" data-close>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p> &copy; <span id="year"></span> Master. All rights reserved.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
